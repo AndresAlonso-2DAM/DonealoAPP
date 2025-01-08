@@ -25,3 +25,27 @@ Cada usuario tiene un perfil personalizado que incluye un historial de donacione
 Propósito
 
 Donealo busca promover el intercambio solidario entre las personas, reducir el desperdicio y alentar prácticas más sostenibles mediante la reutilización de bienes.
+
+**Versión v2.0**
+
+En esta nueva versión de la APP encontramos sustanciales mejoras. 
+
+- Se agregaron los Logs del Ciclo de Vida.
+
+- Se agregaron el NavController y el NavHost.
+
+- En la pantalla Main encontramos unos botones que nos servirán en futuras actualizaciones para acceder al contenido de cada sección.
+
+- Se agregó un botón para volver al HomeScreen en cada sección.
+
+- Se agregaron las dependencias Room en el build.gradle.kts (app)
+
+- Se realizaron modificaciones en el AndroidManifest.xml
+  · Modificamos el nombre de la app.
+  · Agregamos iconos nuevos de la app.
+  · Establecimos permisos para Internet y almacenamiento.
+  · Fijamos la orientación en Portrait para la MainActivity (esto será modificado para otras Activities en las próximas actualizaciones).
+
+
+**En desarrollo Versión v3.0**
+
