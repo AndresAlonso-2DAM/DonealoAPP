@@ -1,10 +1,10 @@
-Donealo
+**Donealo**
 
 Descripción
 
 Donealo es una aplicación móvil que facilita el intercambio de artículos entre usuarios a través de donaciones. Esta plataforma fomenta el apoyo comunitario y la reutilización de recursos, permitiendo a las personas regalar artículos que ya no necesitan y encontrar lo que buscan en su área.
 
-Características Principales
+**Características Principales**
 
 Publicación de artículos:
 
@@ -38,13 +38,16 @@ En esta nueva versión de la APP encontramos sustanciales mejoras.
 
 - Se agregó un botón para volver al HomeScreen en cada sección.
 
-- Se agregaron las dependencias Room en el build.gradle.kts (app)
+- Se agregaron las dependencias Room en el build.gradle.kts(app).
 
 Se realizaron modificaciones en el AndroidManifest.xml
 
 - Modificamos el nombre de la app.
+  
 - Agregamos iconos nuevos de la app.
+  
 - Establecimos permisos para Internet y almacenamiento.
+  
 - Fijamos la orientación en Portrait para la MainActivity (esto será modificado para otras Activities en las próximas actualizaciones).
 
 
