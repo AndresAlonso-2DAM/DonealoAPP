@@ -108,6 +108,7 @@ fun MainScreen() {
                     textAlign = TextAlign.Center
                 )
 
+                //Imagen central
                 Image(
                     painter = painterResource(id = R.drawable.donar_main),
                     contentDescription = "Logo de Donealo",
