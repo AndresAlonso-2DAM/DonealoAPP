@@ -40,11 +40,12 @@ En esta nueva versión de la APP encontramos sustanciales mejoras.
 
 - Se agregaron las dependencias Room en el build.gradle.kts (app)
 
-- Se realizaron modificaciones en el AndroidManifest.xml
-  · Modificamos el nombre de la app.
-  · Agregamos iconos nuevos de la app.
-  · Establecimos permisos para Internet y almacenamiento.
-  · Fijamos la orientación en Portrait para la MainActivity (esto será modificado para otras Activities en las próximas actualizaciones).
+Se realizaron modificaciones en el AndroidManifest.xml
+
+- Modificamos el nombre de la app.
+- Agregamos iconos nuevos de la app.
+- Establecimos permisos para Internet y almacenamiento.
+- Fijamos la orientación en Portrait para la MainActivity (esto será modificado para otras Activities en las próximas actualizaciones).
 
 
 **En desarrollo Versión v3.0**
