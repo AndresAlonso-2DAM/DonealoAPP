@@ -48,7 +48,8 @@ android {
         }
     }
 }
-//Dependencias
+//Dependencias en gradle
+
 dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.room.runtime)
