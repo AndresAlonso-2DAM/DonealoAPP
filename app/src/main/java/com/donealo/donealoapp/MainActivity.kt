@@ -1,5 +1,7 @@
 package com.donealo.donealoapp
 
+import PantallaSQLite
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -9,17 +11,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.donealo.donealoapp.ui.theme.DonealoAPPTheme
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.remember
-import androidx.navigation.compose.rememberNavController
+import android.view.OrientationEventListener
+
 
 
 
@@ -67,14 +70,13 @@ class MainActivity : ComponentActivity() {
         Log.d(TAG, "onRestart: La actividad ha sido reiniciada después de haber sido detenida.")
     }
 
-    override fun onTrimMemory(level: Int) {
-        super.onTrimMemory(level)
-        Log.d(TAG, "onTrimMemory: Nivel de memoria = $level")
-    }
-
-    override fun onUserLeaveHint() {
-        super.onUserLeaveHint()
-        Log.d(TAG, "onUserLeaveHint: El usuario ha dejado la aplicación.")
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.d(TAG, "Pantalla girada a Horizontal (Landscape)")
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.d(TAG, "Pantalla girada a Vertical (Portrait)")
+        }
     }
 }
 
@@ -85,57 +87,38 @@ fun MainScreen() {
 
     Scaffold(
         content = { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .padding(innerPadding)
-                    .fillMaxSize()
+
+            NavHost(
+                navController = navController,
+                startDestination = "home",
+                modifier = Modifier.padding(innerPadding)
             ) {
-                // Texto de bienvenida
-                Text(
-                    text = "¡Bienvenido a Donealo!",
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = "Con Donealo podrás donar lo que ya no quieres",
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 16.dp),
-                    textAlign = TextAlign.Center
-                )
-
-                //Imagen central
-                Image(
-                    painter = painterResource(id = R.drawable.donar_main),
-                    contentDescription = "Logo de Donealo",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                )
-
-                // Configuración del NavHost
-                NavHost(
-                    navController = navController,
-                    startDestination = "home",
-                    modifier = Modifier.weight(1f)
-                ) {
-                    composable("home") { HomeScreen(navController) }
-                    composable("ropa") { SeccionRopa(navController) }
-                    composable("muebles") { SeccionMuebles(navController) }
-                    composable("libros") { SeccionLibros(navController) }
-                    composable("juguetes") { SeccionJuguetes(navController) }
-                    composable("electronica") { SeccionElectronica(navController) }
+                composable("home") {
+                    HomeScreen(navController)
                 }
+                composable("ropa") {
+                    SeccionRopa(navController)
+                }
+                composable("muebles") {
+                    SeccionMuebles(navController)
+                }
+                composable("libros") {
+                    SeccionLibros(navController)
+                }
+                composable("juguetes") {
+                    SeccionJuguetes(navController)
+                }
+                composable("electronica") {
+                    SeccionElectronica(navController)
+                }
+                composable("Donar") {
+                    PantallaSQLite(contexto = LocalContext.current, navController = navController)
+                }
+
             }
         }
     )
 }
-
-
 
 @Composable
 fun HomeScreen(navController: androidx.navigation.NavController) {
@@ -147,42 +130,68 @@ fun HomeScreen(navController: androidx.navigation.NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Secciones",
-            style = MaterialTheme.typography.headlineMedium
+            text = "¡Bienvenido a Donealo!",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            textAlign = TextAlign.Center
         )
+        Text(
+            text = "Con Donealo podrás donar lo que ya no quieres",
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            textAlign = TextAlign.Center
+        )
+
+        // Imagen central
+        Image(
+            painter = painterResource(id = R.drawable.donar_main),
+            contentDescription = "Logo de Donealo",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        )
+
         Button(
-            onClick = { navController.navigate("ropa") }
+            onClick = { navController.navigate("ropa") },
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text("Ropa")
         }
         Button(
-            onClick = { navController.navigate("ropa") }
+            onClick = { navController.navigate("electronica") },
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text("Electrónica")
         }
         Button(
-            onClick = { navController.navigate("ropa") }
+            onClick = { navController.navigate("juguetes") },
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text("Juguetes")
         }
         Button(
-            onClick = { navController.navigate("ropa") }
+            onClick = { navController.navigate("muebles") },
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text("Muebles")
         }
         Button(
-            onClick = { navController.navigate("ropa") }
+            onClick = { navController.navigate("libros") },
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text("Libros")
         }
-    }
-}
 
+        Button(
+            onClick = { navController.navigate("Donar") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Ver Donaciones")
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    DonealoAPPTheme {
-        MainScreen()
     }
 }
