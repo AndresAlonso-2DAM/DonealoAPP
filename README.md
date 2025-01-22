@@ -51,5 +51,21 @@ Se realizaron modificaciones en el AndroidManifest.xml
 - Fijamos la orientación en Portrait para la MainActivity (esto será modificado para otras Activities en las próximas actualizaciones).
 
 
-**En desarrollo Versión v3.0**
+**Versión v3.0**
+
+En esta nueva versión de la APP encontramos sustanciales mejoras. 
+
+**Bugfixes**
+- En esta versión se ha solucionado un error que no mostraba correctamente el log al girar la pantalla de vertical a horizontal y viceversa.
+
+- Al entrar en cada sección ya no aparece la imagen y el titulo principal de la aplicación.
+
+**Cambios**
+- Se ha cambiado la disposición de las secciones en la pantalla con unos botones renovados.
+  
+- Se ha agregado una sección nueva para realizar donaciones a traves de SQLite.
+  
+- Dentro de cada sección ahora se muestran 5 ejemplos de donaciones.
+  
+- En cada sección existe un botón de "Volver al home" para volver a la pantalla principal.
 
