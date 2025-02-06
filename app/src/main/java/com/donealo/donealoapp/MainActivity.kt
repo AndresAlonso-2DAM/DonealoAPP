@@ -22,8 +22,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.donealo.donealoapp.ui.theme.DonealoAPPTheme
 import android.view.OrientationEventListener
-
-
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 
 
 class MainActivity : ComponentActivity() {
@@ -119,6 +121,19 @@ fun MainScreen() {
         }
     )
 }
+
+
+@Composable
+fun DonacionesScreen(viewModel: DonacionViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+    val donaciones by viewModel.donaciones.collectAsState()
+
+    LazyColumn {
+        items(donaciones) { donacion ->
+            Text(text = "${donacion.nombre}: ${donacion.descripcion}")
+        }
+    }
+}
+
 
 @Composable
 fun HomeScreen(navController: androidx.navigation.NavController) {
